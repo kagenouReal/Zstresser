@@ -1,6 +1,5 @@
 //======================//
 const { extractMessageContent, getDevice, jidNormalizedUser, proto, delay, getContentType, areJidsSameUser, generateWAMessage } = require("@kagenoureal/baileys")
-const chalk = require('chalk')
 const fs = require('fs-extra')
 //=====================//
 exports.runtime = function(seconds) {
