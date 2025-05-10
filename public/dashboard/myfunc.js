@@ -91,19 +91,17 @@ alert('Terjadi kesalahan saat logout.');
 });
 }
 //=========
-window.addEventListener("DOMContentLoaded", async () => {
-try {
-const res = await fetch('/auth/info'); 
-const data = await res.json();
-if (data.role !== 'owner') {
-const adminBtn = document.getElementById('adminControlBtn');
-if (adminBtn) adminBtn.style.display = 'none';
-const menu = document.getElementById('mobileMenu');
-if (menu) menu.style.height = '53%';
-}
-} catch (err) {
-console.error("Gagal ambil info user:", err);
-}
+window.addEventListener("DOMContentLoaded", async () => {   
+  try {
+    const res = await fetch('/auth/info'); 
+    const data = await res.json();
+    if (data.role !== 'owner') {
+      const adminWrapper = document.getElementById('adminControlWrapper');
+      if (adminWrapper) adminWrapper.style.display = 'none';
+    }
+  } catch (err) {
+    console.error("Gagal ambil info user:", err);
+  }
 });
 window.addEventListener("DOMContentLoaded", async () => {
 try {
