@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Zstreszer - V3</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+  <link rel="stylesheet" href="/dashboard/style.css"/>
+</head>
+<body class="bg-[color:var(--bg-light)] text-[color:var(--text-dark)] font-extrabold flex flex-col h-auto">
+<div id="splashScreen" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black text-white font-sans">
+  <div class="text-base tracking-wide font-extrabold animate-pulse drop-shadow-lg mb-2">Z-CRASH</div>
+  <div class="loader w-10 h-10"></div>
+<div class="text-[10px] tracking-wider font-normal animate-pulse opacity-75 mt-2">Memuat Zstreszer Hub...</div>
+</div>
+  <header class="p-8 border-b border-gray-300 flex justify-between items-center">
+<h1 class="text-4xl tracking-wide select-none text-[color:var(--primary-blue)] text-shadow-lg">
+  Zstreszer - X
+</h1>
+<nav class="space-x-6 hidden md:flex">
+<button onclick="window.location.href='/dashboard';" 
+  class="bg-[color:var(--button-blue)] text-white hover:bg-[color:var(--button-blue-hover)] px-4 py-2 rounded-lg shadow-md shadow-[color:var(--button-blue)] transition-all duration-300 transform hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-[color:var(--button-blue)]">
+  <i class="fas fa-home"></i>
+</button>
+</nav>
+<button onclick="setTimeout(() => { window.location.href = '/dashboard'; }, 450);" 
+  class="bg-[color:var(--button-blue)] text-white hover:bg-[color:var(--button-blue-hover)] px-4 py-2 rounded-lg shadow-md shadow-[color:var(--button-blue)] transition-all duration-300 transform hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-[color:var(--button-blue)]">
+  <i class="fas fa-home"></i>
+</button>
+</header>
+
+  <main class="flex-grow max-w-6xl mx-auto w-full p-6 space-y-10">
+    
+    <section class="bg-[color:var(--card-bg)] rounded-2xl p-8 shadow-lg flex flex-col md:flex-row items-center gap-8 transition-transform hover:scale-[1.01] duration-300" style="box-shadow: 0 8px 24px var(--card-shadow);">
+      <div class="rounded-xl overflow-hidden shadow-md aspect-video w-72 ring-2 ring-[color:var(--primary-blue)]">
+        <video class="w-full h-full object-cover" autoplay loop muted playsinline>
+          <source src="/assets/sami.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <div class="text-lg max-w-xl text-[color:var(--text-dark)] font-semibold -mt-4">
+<p class="leading-relaxed text-[color:var(--text-light)]">
+Welcome to <span class="text-[color:var(--primary-blue)] font-bold">Admin Control</span> —  
+where you manage the power, commands rule the system
+</p>
+      </div>
+    </section>
+
+    <section id="userListSection" class="bg-[color:var(--card-bg)] rounded-2xl p-8 shadow-lg mt-10 transition-transform hover:scale-[1.01] duration-300" style="box-shadow: 0 8px 24px var(--card-shadow);">
+      <h2 class="text-3xl border-b border-gray-200 pb-4 mb-6 text-[color:var(--primary-blue-dark)]">User Accounts</h2>
+      <ul id="userList" class="space-y-4 text-lg font-semibold tracking-wide">
+        <!-- Akan diisi oleh JS -->
+      </ul>
+    </section>
+<section id="createUserSection" class="bg-[color:var(--card-bg)] rounded-2xl p-8 shadow-lg mt-10 transition-transform hover:scale-[1.01] duration-300" style="box-shadow: 0 8px 24px var(--card-shadow);">
+  <h2 class="text-3xl border-b border-gray-200 pb-4 mb-6 text-[color:var(--primary-blue-dark)]">Create User</h2>
+  <form id="createUserForm" onsubmit="createUser(event)" class="space-y-4">
+<input
+  type="text"
+  id="createEmail"
+  placeholder="Email"
+  required
+  autocapitalize="off"
+  autocomplete="off"
+  class="w-full p-3 rounded-md border border-gray-600 text-black focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+/>
+<input
+  type="text"
+  id="createPassword"
+  placeholder="Password"
+  required
+  autocapitalize="off"
+  autocomplete="off"
+  class="w-full p-3 rounded-md border border-gray-600 text-black focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+/>
+    <select
+      id="createRole"
+      required
+      class="w-full p-3 rounded-md border border-gray-600 text-black focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+    >
+      <option value="">Pilih Role</option>
+      <option value="user">User</option>
+      <option value="premium">Premium</option>
+      <option value="owner">Owner</option>
+    </select>
+    <button
+      type="submit"
+      onclick="animatePress(this)" 
+      class="bg-[color:var(--button-blue)] text-white px-5 py-2 rounded-lg shadow-md"
+    >
+      Create User
+    </button>
+    <div id="createUserStatus" class="text-sm mt-2 font-medium text-red-500"></div>
+  </form>
+</section>
+    <section class="bg-[color:var(--card-bg)] rounded-2xl p-8 shadow-lg transition-transform hover:scale-[1.02] duration-300" style="box-shadow: 0 8px 24px var(--card-shadow);">
+      <h2 class="text-3xl border-b border-gray-200 pb-4 mb-6 select-none text-[color:var(--primary-blue-dark)] flex items-center gap-3">
+        <i class="fas fa-star text-yellow-400"></i> Credits
+      </h2>
+      <ul class="space-y-5 text-lg font-semibold tracking-wide">
+        <li class="flex items-center gap-3">
+          <i class="fas fa-user text-[color:var(--button-blue)]"></i>
+          <span>Creator: <span class="text-[color:var(--primary-blue)]">Kagenou</span></span>
+        </li>
+        <li class="flex items-center gap-3">
+          <i class="fas fa-globe text-[color:var(--button-blue)]"></i>
+          <span>Website: <span class="text-[color:var(--primary-blue)]">Zstreszer</span></span>
+        </li>
+        <li class="flex items-center gap-3">
+          <i class="fab fa-github text-gray-700"></i>
+          <a href="https://github.com/kagenouReal" target="_blank" class="hover:text-[color:var(--button-blue)] underline transition-all">GitHub Owner</a>
+        </li>
+        <li class="flex items-center gap-3">
+          <i class="fab fa-whatsapp text-green-500"></i>
+          <a href="https://wa.me/601112260297" target="_blank" class="hover:text-[color:var(--button-blue)] underline transition-all">WhatsApp Owner</a>
+        </li>
+      </ul>
+    </section>
+
+  </main>
+
+  <footer class="bg-white border-t border-gray-300 p-6 text-center text-gray-600 font-semibold select-none">
+    © Kagenou - 2025 || Zstreszer
+  </footer>
+
+<script src="/cadmin/myfunc.js"></script>
+</body>
+</html>

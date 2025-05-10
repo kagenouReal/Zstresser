@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Zstreszer - V3</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+  <link rel="stylesheet" href="/dashboard/style.css"/> <!-- Link ke CSS terpisah -->
+</head>
+<body class="bg-[color:var(--bg-light)] text-[color:var(--text-dark)] font-extrabold flex flex-col h-auto">
+<div id="splashScreen" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black text-white font-sans">
+  <div class="text-base tracking-wide font-extrabold animate-pulse drop-shadow-lg mb-2">Z-CRASH</div>
+  <div class="loader w-10 h-10"></div>
+<div class="text-[10px] tracking-wider font-normal animate-pulse opacity-75 mt-2">Memuat Zstreszer Hub...</div>
+</div>
+  <header class="p-8 border-b border-gray-300 flex justify-between items-center">
+<h1 class="text-4xl tracking-wide select-none text-[color:var(--primary-blue)] text-shadow-lg">
+  Zstreszer - X
+</h1>
+<nav class="space-x-6 md:flex">
+<button
+  id="mobileMenuBtn"
+  onclick="toggleMenu()"
+  class="bg-[color:var(--button-blue)] text-white hover:bg-[color:var(--button-blue-hover)] px-4 py-2 rounded-lg shadow-md shadow-[color:var(--button-blue)] transition-all duration-300 transform hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-[color:var(--button-blue)]"
+>
+  <i class="fas fa-bars text-xl animate-pulse"></i>
+</button>
+</header>
+
+<nav id="mobileMenu" class="bg-white flex flex-col space-y-3 p-6 hidden border-b border-gray-300 shadow-md">
+<div class="fixed top-0 left-0 w-full bg-white border-b border-gray-300 shadow-md z-50 px-5 py-4">
+  <h1 class="brand-title text-xl text-center text-[color:var(--primary-blue)] font-bold">
+    List - Menu
+  </h1>
+</div>
+<button class="bg-[color:var(--button-blue)] text-white px-4 py-1 rounded text-sm shadow-sm">
+  example
+</button>
+<div class="mt-6 border-t-2 border-gray-300"></div>
+    <p class="text-sm text-gray-500 mb-1 ml-1">Combat Features</p>
+    <button onclick="handleBugMenu(this)" class="bg-[color:var(--button-blue)] text-white hover:bg-[color:var(--button-blue-hover)] px-6 py-3 rounded transition-all duration-300 transform hover:scale-[1.05] active:scale-[0.95] shadow-md shadow-[color:var(--button-blue)] text-left">
+      Bug Menu
+    </button>
+  </div>
+
+  <div class="pt-3 border-t border-gray-300">
+    <p class="text-sm text-gray-500 mb-1 ml-1">DDoS Attack Panel</p>
+    <button onclick="alert('Coming Soon')" class="bg-[color:var(--button-blue)] text-white hover:bg-[color:var(--button-blue-hover)] px-6 py-3 rounded transition-all duration-300 transform hover:scale-[1.05] active:scale-[0.95] shadow-md text-left">
+      DDoS Menu
+    </button>
+  </div>
+
+  <div class="pt-3 border-t border-gray-300">
+    <p class="text-sm text-gray-500 mb-1 ml-1">API Documentation</p>
+    <button onclick="alert('Coming Soon')" class="bg-[color:var(--button-blue)] text-white hover:bg-[color:var(--button-blue-hover)] px-6 py-3 rounded transition-all duration-300 transform hover:scale-[1.05] active:scale-[0.95] shadow-md text-left">
+      Docs Menu
+    </button>
+  </div>
+
+  <div class="pt-3 border-t border-gray-300">
+    <p class="text-sm text-gray-500 mb-1 ml-1">Admin Control Area</p>
+    <button id="adminControlBtn" onclick="window.location.href='/cadmin';" class="bg-[color:var(--button-blue)] text-white hover:bg-[color:var(--button-blue-hover)] px-6 py-3 rounded transition-all duration-300 transform hover:scale-[1.05] active:scale-[0.95] shadow-md text-left">
+      Admin Control
+    </button>
+  </div>
+
+  <div class="pt-3 border-t border-gray-300">
+    <p class="text-sm text-gray-500 mb-1 ml-1">Keluar dari Panel</p>
+    <button id="logout-button-1" class="bg-red-500 text-white hover:bg-red-600 px-6 py-3 rounded transition-all duration-300 transform hover:scale-[1.05] active:scale-[0.95] shadow-md flex items-center gap-2">
+      <i class="fas fa-sign-out-alt"></i> Logout
+    </button>
+  </div>
+<div class="fixed bottom-0 left-0 w-full text-[15px] text-center text-gray-700 border-t border-gray-300 bg-white py-1 z-50">
+  <p>&copy; Kagenou - 2025</p>
+</div>
+</div>
+</nav>
+  <main class="flex-grow max-w-6xl mx-auto w-full p-6 space-y-10">
+</section>
+<section class="bg-[color:var(--card-bg)] rounded-2xl p-8 shadow-lg flex flex-col md:flex-row items-center gap-8 transition-transform hover:scale-[1.01] duration-300" style="box-shadow: 0 8px 24px var(--card-shadow);">
+  <div class="rounded-xl overflow-hidden shadow-md aspect-video w-72 ring-2 ring-[color:var(--primary-blue)]">
+<video
+  class="w-full h-full object-cover"
+  autoplay
+  loop
+  muted
+  playsinline
+>
+  <source src="/assets/miyu.mp4" type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
+  </div>
+<div class="text-lg max-w-xl text-[color:var(--text-dark)] font-semibold -mt-4">
+  <p class="leading-relaxed text-[color:var(--text-light)]">
+Welcome to <span class="text-[color:var(--primary-blue)] font-bold">Zstreszer</span> Hub👋
+where zero-days whisper, and packets rain like blades, Tools of chaos, dressed in elegance.
+  </p>
+</div>
+</section>
+
+<section id="pairSection" class="hidden bg-[color:var(--card-bg)] rounded-xl p-8 shadow-lg mt-10">
+  <h2 class="text-3xl border-b border-gray-300 pb-3 mb-6 text-[color:var(--primary-blue-dark)]">Pair Device</h2>
+
+  <form id="pairForm" onsubmit="return false;">
+    <input 
+      id="nomor" 
+      placeholder="Example: 6011xx" 
+      required 
+      class="w-full p-3 rounded-md border border-gray-600 mb-4 text-black focus:outline-none focus:ring-2 focus:ring-blue-500 transition" 
+    />
+<button 
+  type="submit"
+  id="generateBtn"
+  class="bg-[color:var(--button-blue)] text-white px-5 py-2 rounded-lg shadow-md"
+  onclick="handlePairing(); "
+>
+  Generate Code
+</button>
+  </form>
+</section>
+  
+  <div id="pairingCode" class="mt-4 text-xl font-semibold text-[color:var(--text-dark)]"></div>
+</section>
+<section id="cekownwa" class="bg-[color:var(--card-bg)] rounded-2xl p-8 shadow-lg transition-transform hover:scale-[1.02] duration-300" style="box-shadow: 0 8px 24px var(--card-shadow);">
+  <h2 class="text-2xl border-b border-gray-200 pb-4 mb-6 select-none text-[color:var(--primary-blue-dark)] flex items-center gap-3">
+    <i class="fas fa-link text-green-500"></i> Connected Clients
+  </h2>
+  <ul id="userList" class="space-y-3">
+    <!-- Data akan diisi via JavaScript -->
+  </ul>
+</section>
+<section class="bg-[color:var(--card-bg)] rounded-xl p-8 shadow-lg mt-10">
+  <h2 class="text-3xl border-b border-gray-300 pb-3 mb-6 text-[color:var(--primary-blue-dark)]">Info Device Server</h2>
+  <div id="deviceInfo" class="text-[color:var(--text-dark)] space-y-2 text-base"></div>
+</section>
+<section class="bg-[color:var(--card-bg)] rounded-2xl p-8 shadow-lg transition-transform hover:scale-[1.02] duration-300" style="box-shadow: 0 8px 24px var(--card-shadow);">
+  <h2 class="text-3xl border-b border-gray-200 pb-4 mb-6 select-none text-[color:var(--primary-blue-dark)] flex items-center gap-3">
+<i class="fas fa-star text-yellow-400"></i> Credits
+  </h2>
+  <ul class="space-y-5 text-lg font-semibold tracking-wide">
+<li class="flex items-center gap-3">
+  <i class="fas fa-user text-[color:var(--button-blue)]"></i>
+  <span>Creator: <span class="text-[color:var(--primary-blue)]">Kagenou</span></span>
+</li>
+<li class="flex items-center gap-3">
+  <i class="fas fa-globe text-[color:var(--button-blue)]"></i>
+  <span>Website: <span class="text-[color:var(--primary-blue)]">Zstreszer</span></span>
+</li>
+<li class="flex items-center gap-3">
+  <i class="fab fa-github text-gray-700"></i>
+  <a
+href="https://github.com/kagenouReal"
+target="_blank"
+rel="noopener noreferrer"
+class="hover:text-[color:var(--button-blue)] underline transition-all"
+>GitHub Owner</a
+  >
+</li>
+<li class="flex items-center gap-3">
+  <i class="fab fa-whatsapp text-green-500"></i>
+  <a
+href="https://wa.me/601112260297"
+target="_blank"
+rel="noopener noreferrer"
+class="hover:text-[color:var(--button-blue)] underline transition-all"
+>WhatsApp Owner</a
+  >
+</li>
+  </ul>
+</section>
+  </main>
+
+  <footer class="bg-white border-t border-gray-300 p-6 text-center text-gray-600 font-semibold select-none">
+© Kagenou - 2025 || Zstreszer
+  </footer>
+
+  <script src="/dashboard/myfunc.js"></script> 
+</body>
+</html>

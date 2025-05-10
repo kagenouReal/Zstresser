@@ -1,0 +1,25 @@
+{
+  "name": "Zstreszer",
+  "version": "3.0",
+  "description": "This Is Zstreszer Version 3",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "whatsapp",
+    "express"
+  ],
+  "author": "Kagenou",
+  "license": "MIT",
+  "dependencies": {
+    "@hapi/boom": "latest",
+    "@kagenoureal/baileys": "latest",
+    "express-session": "latest",
+    "express": "latest",
+    "fs-extra": "latest",
+    "os": "latest",
+    "path": "latest",
+    "pino": "latest"
+  }
+}
