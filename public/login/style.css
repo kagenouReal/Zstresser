@@ -1,0 +1,28 @@
+
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Splash Screen */
+#splashScreen {
+  background: radial-gradient(circle at center, #2b5876, #4e4376);
+}
+#splashScreen.fade-out {
+  opacity: 0;
+  transition: opacity 0.6s ease-out;
+  pointer-events: none;
+}
+
+/* Loader */
+.loader {
+  border: 5px solid rgba(255, 255, 255, 0.4);
+  border-top: 5px solid #4299e1;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  box-shadow: 0 0 12px rgba(66, 153, 225, 0.5);
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
