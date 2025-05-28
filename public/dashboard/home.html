@@ -94,8 +94,8 @@ Home of APIs, WhatsApp bugs, DDoS power, and elite chaos tools
 </section>
 <!-- stats -->
 <section id="stat-section" class="bg-[color:var(--card-bg)] rounded-xl p-7 shadow-lg mt-10 transition-transform hover:scale-[1.02] duration-300 space-y-6" style="box-shadow: 0 8px 24px var(--card-shadow);">
-<h2 class="text-2xl font-semibold border-b border-gray-200 pb-4 text-[color:var(--primary-blue-dark)] flex items-center gap-3 select-none">
-<i class="fas fa-chart-bar text-blue-500"></i> Statistik Request
+<h2 class="text-xl font-semibold border-b border-gray-200 pb-4 text-[color:var(--primary-blue-dark)] flex items-center gap-3 select-none">
+<i class="fas fa-chart-bar text-blue-500"></i> Statistic Request
 </h2>
 <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-sm sm:text-base font-medium text-black">
 <li class="flex items-center gap-3 bg-white/50 backdrop-blur-md rounded-lg px-4 py-4 shadow">
@@ -110,30 +110,15 @@ Home of APIs, WhatsApp bugs, DDoS power, and elite chaos tools
 <i class="fas fa-times-circle text-red-500"></i>
 <span>Request Gagal: <span id="failReq" class="font-bold text-red-600">0</span></span>
 </li>
-<li class="flex items-center gap-3 bg-white/50 backdrop-blur-md rounded-lg px-4 py-4 shadow col-span-full sm:col-span-2 lg:col-span-1">
+<li class="flex items-center gap-3 bg-white/50 backdrop-blur-md rounded-lg px-4 py-4 shadow">
 <i class="fas fa-history text-blue-500"></i>
 <span>Crash Terakhir: <span id="lastCrash" class="font-bold text-blue-600">Tidak ada</span></span>
 </li>
 </ul>
 </section>
-<script>
-lucide.createIcons();
-const fake = {
-total: 12730,
-crash: 233,
-other: 278,
-lastCrash: "2025-05-23 22:12"
-};
-const gagal = fake.crash + fake.other;
-const sukses = fake.total - gagal;
-document.getElementById("totalReq").innerText = fake.total;
-document.getElementById("successReq").innerText = sukses;
-document.getElementById("failReq").innerText = gagal;
-document.getElementById("lastCrash").innerText = fake.lastCrash;
-</script>
 <!-- ping -->
 <section id="pingSection" class="bg-[color:var(--card-bg)] rounded-xl p-7 shadow-lg mt-10 transition-transform hover:scale-[1.02] duration-300 space-y-6" style="box-shadow: 0 8px 24px var(--card-shadow);">
-<h2 class="text-2xl font-semibold border-b border-gray-200 pb-4 text-[color:var(--primary-blue-dark)] flex items-center gap-3 select-none">
+<h2 class="text-xl font-semibold border-b border-gray-200 pb-4 text-[color:var(--primary-blue-dark)] flex items-center gap-3 select-none">
 <i class="fas fa-server text-green-500"></i>Server Info
 </h2>
 <ul class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 text-sm sm:text-base font-medium text-black">
@@ -197,7 +182,7 @@ document.getElementById("lastCrash").innerText = fake.lastCrash;
 </section>
 <!-- dev info -->
 <section class=" bg-[color:var(--card-bg)] rounded-xl p-8 shadow-lg transition-transform hover:scale-[1.02] duration-300 mt-8 " style="box-shadow: 0 8px 24px var(--card-shadow);">
-<h2 class="text-2xl border-b border-gray-200 pb-4 mb-6 select-none text-[color:var(--primary-blue-dark)] flex items-center gap-3">
+<h2 class="text-xl border-b border-gray-200 pb-4 mb-6 select-none text-[color:var(--primary-blue-dark)] flex items-center gap-3">
 <i class="fas fa-microchip text-purple-400 text-lg"></i>
 <span class="tracking-wide">Developer Info</span>
 </h2>
@@ -212,7 +197,7 @@ document.getElementById("lastCrash").innerText = fake.lastCrash;
 <!-- Cradit -->
 <section class=" bg-[color:var(--card-bg)] rounded-xl p-6 shadow-lg transition-transform hover:scale-[1.03] duration-300"
  style="box-shadow: 0 6px 18px var(--card-shadow);">
-<h2 class="text-2xl border-b border-gray-300 pb-3 mb-5 select-none text-[color:var(--primary-blue-dark)] flex items-center gap-2 font-semibold tracking-wide">
+<h2 class="text-xl border-b border-gray-300 pb-3 mb-5 select-none text-[color:var(--primary-blue-dark)] flex items-center gap-2 font-semibold tracking-wide">
 <i class="fas fa-bolt text-yellow-400 animate-pulse"></i>
 <span>Credits</span>
 </h2>

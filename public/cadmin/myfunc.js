@@ -113,7 +113,7 @@ alert(data.error || "Gagal membuat user.");
 }
 } catch (err) {}
 setTimeout(() => {
-button.innerHTML = '<i class="fas fa-plus-circle mr-2"></i> Create Account';
+button.innerHTML = '<i class="fas fa-plus-circle"></i> Create User';
 button.disabled = false;
 }, 1000);
 }

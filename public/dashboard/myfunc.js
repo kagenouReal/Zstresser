@@ -110,3 +110,16 @@ link.className = 'nav-btn font-semibold px-0 py-2 rounded flex items-center gap-
 }
 });
 });
+//==========
+const fake = {
+total: 5730,
+crash: 12,
+other: 578,
+lastCrash: "2025-05-23 22:12"
+};
+const gagal = fake.crash + fake.other;
+const sukses = fake.total - gagal;
+document.getElementById("totalReq").innerText = fake.total;
+document.getElementById("successReq").innerText = sukses;
+document.getElementById("failReq").innerText = gagal;
+document.getElementById("lastCrash").innerText = fake.lastCrash;
