@@ -130,7 +130,10 @@ const videoList = [
 './public/assets/sami.mp4',
 './public/assets/mori.mp4',
 './public/assets/mari.mp4',
-'./public/assets/koyo.mp4'
+'./public/assets/koyo.mp4',
+'./public/assets/mine.mp4',
+'./public/assets/saku.mp4',
+'./public/assets/idol.mp4'
 ];
 const memek = videoList[Math.floor(Math.random() * videoList.length)];
 //=================
