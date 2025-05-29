@@ -172,6 +172,7 @@ caption:
 │ • ${prefix}delacces
 │ • ${prefix}clearsesi
 ┌─ *Web Control / Admin*
+│ • ${prefix}owner
 │ • ${prefix}cuser
 │ • ${prefix}cpremium
 │ • ${prefix}cowner
@@ -190,6 +191,7 @@ caption:
 ┌─ *Random / Extras Tools*
 │ • ${prefix}eval
 │ • ${prefix}upload
+│ • ${prefix}decrypt
 │ • ${prefix}enclow
 │ • ${prefix}encmedium
 │ • ${prefix}enchard
@@ -206,9 +208,9 @@ serverMessageId: 1
 }, 
 externalAdReply: {
 title: "Zstreszer - X",
+sourceUrl: global.domain,
 mediaType: 1,
-thumbnail: fs.readFileSync("./public/assets/Z.jpg"),
-sourceUrl: global.domain
+thumbnail: fs.readFileSync("./public/assets/Z.jpg")
 }
 }
 }, { quoted: m });
@@ -278,7 +280,40 @@ await conn.sendMessage(m.chat, { document: { url: `./${jeneng}` }, fileName: jen
 await fs.unlinkSync(jeneng);
 }
 break
-//=================
+//================
+case "owner":
+await m.reply(`╭───〔 💻 Developer Info 〕───╮
+│ 👤 Nama: Kagenou
+│ 🌍 Asal: _Kelantan, Malaysia_
+│ 🧑‍💻 Level: Developer Newbie (15 y/o)
+│ ⚙️ Role: Bot Master
+│ 🔧 Fokus:
+│• Scripting backend, Frontend
+│• Bot Devices
+│• Combat Tools
+├─────────────────
+│🔤 Bahasa yang Digunakan:
+│🟨 JavaScript
+│🔵 HTML/CSS
+│🟢 Node.js
+│🟣 Python (dasar)
+╰─────────────────╯`)
+const vcard = `
+BEGIN:VCARD
+VERSION:3.0
+FN:Kagenou Real
+ORG:Zstreszer - Dev
+TEL;type=CELL;type=VOICE;waid=601112260297:+601112260297
+END:VCARD
+`.trim();
+await conn.sendMessage(m.chat, {
+contacts: {
+displayName: 'Kagenou Real',
+contacts: [{ vcard }]
+}
+}, { quoted: m });
+break;
+//================
 case 'ping': {
 try {
 const apiKey = (username === global.username)
@@ -369,24 +404,19 @@ m.reply(`❌ Terjadi kesalahan: ${err.message}`);
 break;
 //================
 case 'listmethod': {
-const methods = [
-{ name: 'hentai', desc: 'Bypass UAM & JS' },
-{ name: 'hold', desc: 'TLS Flood' },
-{ name: 'flood', desc: 'Request Flood' },
-{ name: 'bypass', desc: 'Advanced Bypass' },
-{ name: 'quantum', desc: 'Simple Fast Method' },
-{ name: 'mixmax', desc: 'Hybrid Bypass + Flood' },
-{ name: 'thunder', desc: 'Heavy Proxy Flood' },
-];
-let teks = '📦 *List Method Serangan:*\n\n';
-for (let i = 0; i < methods.length; i++) {
-const mtd = methods[i];
-teks += `*${i + 1}. ${mtd.name}*\n• ${mtd.desc}\n\n`;
-}
-m.reply(teks.trim());
+let teks = 
+`📦 *List Method Ddos:*
+
+1: hentai -
+2: hold - 
+3: flood - 
+4: bypass - 
+5: quantum -
+6: mixmax - 
+7: thunder - `;
+m.reply(teks);
 }
 break;
-
 //============
 case 'enclow':
 case 'encmedium':
@@ -431,6 +461,49 @@ caption: '*Berhasil encrypt*'
 } catch (err) {
 console.error(err);
 await m.reply('❌ Terjadi kesalahan saat proses enkripsi');
+}
+break;
+}
+//=================
+case 'decrypt': {
+if (!m.quoted) return m.reply(
+`❌ Example: Reply File Js Dengan Caption ${prefix + command}`);
+try {
+const apiKey = (username === global.username)
+? global.apikey
+: global.db.users[username]?.apiKey;
+const mime = m.quoted.mimetype;
+const buffer = await m.quoted.download();
+const filename = `zstres.js`;
+const form = new FormData();
+form.append('file', buffer, { filename, contentType: mime });
+form.append('filename', filename);
+const res = await fetch(`http://localhost:${global.port}/api/decrypt`, {
+method: 'POST',
+headers: {
+'x-api-key': apiKey,
+...form.getHeaders()
+},
+body: form
+});
+if (!res.ok) {return}
+let json;
+try {
+json = await res.json();
+} catch {
+const text = await res.text();
+}
+const decryptedCode = json.decrypted;
+const decryptedBuffer = Buffer.from(decryptedCode, 'utf-8');
+await conn.sendMessage(m.chat, {
+document: decryptedBuffer,
+fileName: 'Z-DECRYPT.js',
+mimetype: 'application/javascript',
+caption: '*Berhasil decrypt*'
+}, { quoted: m });
+} catch (err) {
+console.error(err);
+await m.reply('❌ Terjadi kesalahan saat proses dekripsi');
 }
 break;
 }

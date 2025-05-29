@@ -12,10 +12,10 @@ const sessionFolderPath = path.join(__dirname, '../../sessions');
 //================
 router.post('/auth', async (req, res) => {
 const { email, password } = req.body;
- const userEntry = Object.entries(global.db.users).find(([username, user]) =>
+const userEntry = Object.entries(global.db.users).find(([username, user]) =>
 (user.email === email || username === email) && user.password === password
 );
-const handleLogin = async (username, user, role = user.role) => {
+const handleLogin = async (username, user, role = user.role || 'user') => {
 req.session.loggedIn = true;
 req.session.email = user.email;
 req.session.username = username;

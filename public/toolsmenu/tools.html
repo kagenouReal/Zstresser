@@ -125,6 +125,30 @@ where chats ignite, commands respond, and connections spark
 </form>
 <ul id="userList1" class="space-y-3 mt-6"></ul>
 </section>
+<!-- =dec= -->
+<section class="bg-white dark-section rounded-xl p-7 shadow-lg mt-10 transition-transform hover:scale-[1.02] duration-300 space-y-5" style="box-shadow: 0 8px 24px var(--card-shadow);">
+<h2 class="text-xl font-semibold border-b border-gray-200 pb-4 mb-6 select-none text-[color:var(--primary-blue-dark)] flex items-center gap-3">
+<i class="fas fa-unlock text-blue-500 text-xl"></i> Decrypt JS File
+</h2>
+<form id="decryptForm" class="flex flex-col gap-6">
+<input
+type="file"
+id="decryptFileInput"
+accept=".js"
+class="block w-full px-4 py-2 text-sm rounded border border-gray-300 text-gray-700 bg-white
+file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold
+file:bg-gray-200 file:text-black hover:file:bg-gray-300
+dark:text-gray-200 dark:bg-gray-900 dark:border-gray-800
+dark:file:bg-gray-700 dark:file:text-gray-200 dark:hover:file:bg-gray-800"
+/>
+<button id="decryptBtn" type="submit" class="w-full bg-[color:var(--button-blue)] text-white px-5 py-2 rounded-lg transition duration-200 transform hover:scale-[1.02] active:scale-[0.99] shadow text-sm flex items-center justify-center gap-2 dark:bg-blue-900">
+<i class="fas fa-unlock"></i>
+<span class="spinner hidden w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
+<span class="label">Decrypt</span>
+</button>
+</form>
+<ul id="userList3" class="space-y-3 mt-6"></ul>
+</section>
 <!-- =enc= -->
 <section class=" bg-white dark-section rounded-xl p-7 shadow-lg mt-10 transition-transform hover:scale-[1.02] duration-300 space-y-5" style="box-shadow: 0 8px 24px var(--card-shadow);">
 <h2 class="text-xl font-semibold border-b border-gray-200 pb-4 mb-6 select-none text-[color:var(--primary-blue-dark)] flex items-center gap-3">

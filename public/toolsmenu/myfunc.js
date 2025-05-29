@@ -179,6 +179,73 @@ alert('Terjadi kesalahan saat mengenkripsi file!\nInfo: ' + err.message);
 }
 });
 //=========
+const decryptForm = document.getElementById('decryptForm');
+const decryptInput = document.getElementById('decryptFileInput');
+const decryptList = document.getElementById('userList3'); 
+const decryptBtn = document.getElementById('decryptBtn');
+const decryptSpinner = decryptBtn.querySelector('.spinner');
+const decryptLabel = decryptBtn.querySelector('.label');
+decryptForm.addEventListener('submit', async (e) => {
+e.preventDefault();
+const file = decryptInput.files[0];
+if (!file) return alert('Pilih file .js dulu, Darling~');
+if (!file.name.endsWith('.js')) return alert('Hanya file .js yang bisa didekripsi!');
+decryptSpinner.classList.remove('hidden');
+decryptLabel.textContent = 'Decrypting...';
+decryptBtn.disabled = true;
+const formData = new FormData();
+formData.append('file', file);
+formData.append('filename', file.name);
+try {
+const res = await fetch('/api/decrypt', { method: 'POST', body: formData });
+decryptSpinner.classList.add('hidden');
+if (!res.ok) {
+const errorData = await res.json().catch(() => ({}));
+decryptLabel.textContent = 'Decrypt';
+decryptBtn.disabled = false;
+return alert('Gagal mendekripsi file! ' + (errorData.error || ''));
+}
+const { decrypted } = await res.json();
+if (!decrypted) throw new Error('Tidak ada hasil dekripsi');
+const blob = new Blob([decrypted], { type: 'application/javascript' });
+const url = URL.createObjectURL(blob);
+decryptBtn.classList.add('hidden');
+const item = document.createElement('li');
+item.className = 'bg-white dark:bg-gray-900 p-4 rounded shadow border-l-4 border-blue-500 dark:border-blue-500 flex items-center justify-between gap-4';
+const linkText = document.createElement('input');
+linkText.type = 'text';
+linkText.readOnly = true;
+linkText.className = 'text-sm w-full bg-gray-100 dark:bg-gray-700 dark:text-gray-200 px-2 py-1 rounded';
+linkText.value = url;
+const copyBtn = document.createElement('button');
+copyBtn.textContent = 'Download';
+copyBtn.className = 'bg-blue-500 dark:bg-blue-800 text-white px-3 py-1 rounded hover:bg-blue-600 hover:bg-blue-900';
+copyBtn.onclick = () => {
+const a = document.createElement('a');
+a.href = url;
+a.download = 'DecZ.js';
+a.click();
+copyBtn.textContent = 'Downloaded!';
+setTimeout(() => {
+decryptList.removeChild(item);
+decryptBtn.classList.remove('hidden');
+decryptLabel.textContent = 'Decrypt';
+decryptBtn.disabled = false;
+}, 1500);
+};
+item.appendChild(linkText);
+item.appendChild(copyBtn);
+decryptList.prepend(item);
+decryptForm.reset();
+} catch (err) {
+console.error(err);
+decryptSpinner.classList.add('hidden');
+decryptLabel.textContent = 'Decrypt';
+decryptBtn.disabled = false;
+alert('Terjadi kesalahan saat mendekripsi file!\nInfo: ' + err.message);
+}
+});
+//=========
 tailwind.config = {
 darkMode: "class",
 };

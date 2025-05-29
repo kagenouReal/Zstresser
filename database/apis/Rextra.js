@@ -197,4 +197,44 @@ res.status(500).send('500: Request error');
 });
 });
 //===========
+router.post('/decrypt', requireLogin, checkLimit, async (req, res) => {
+try {
+const { webcrack } = await import('webcrack');
+const contentType = req.headers['content-type'] || '';
+const boundary = contentType.match(/boundary=(.*)$/)?.[1];
+if (!boundary) return res.status(400).send('Missing boundary');
+let body = [];
+req.on('data', chunk => body.push(chunk));
+req.on('end', async () => {
+try {
+body = Buffer.concat(body);
+const parts = body.toString('binary').split(`--${boundary}`);
+const filePart = parts.find(part => part.includes('filename='));
+if (!filePart) return res.status(400).send('No file uploaded');
+const filenameMatch = filePart.match(/filename="(.+?)"/);
+if (!filenameMatch) return res.status(400).send('Filename missing');
+const filename = filenameMatch[1];
+if (!filename.endsWith('.js')) return res.status(400).send('400: cuma bisa decrypt file js');
+const start = body.indexOf('\r\n\r\n', body.indexOf(filename)) + 4;
+const end = body.indexOf(`\r\n--${boundary}`, start);
+const fileBuffer = body.slice(start, end);
+const encryptedCode = fileBuffer.toString('utf-8');
+const result = await webcrack(encryptedCode);
+const decryptedCode = result.code;
+res.json({ decrypted: decryptedCode });
+} catch (err) {
+console.error(err);
+res.status(500).send('500: Internal server error');
+}
+});
+req.on('error', (err) => {
+console.error('Request error:', err);
+res.status(500).send('500: Request error');
+});
+} catch (importErr) {
+console.error('Import error:', importErr);
+res.status(500).send('500: Failed to load decrypt module');
+}
+});
+//===========
 module.exports = router;
