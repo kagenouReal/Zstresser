@@ -3,7 +3,7 @@ global.username = "kagenou ganteng";
 global.password = "zstres";
 global.apikey = "ZstresOwn01";
 global.port = "3000";
-global.domain = "https://supreme-space-trout-67xqv4gwpr624vx4-3000.app.github.devinsd" || `http://localhost:${global.port}`
+global.domain = "https://zstresser.up.railway.app" || `http://localhost:${global.port}`
 //==========
 global.limitConfig = {
 user: 15,
