@@ -75,16 +75,34 @@ background-color: #4b5563;
 border-radius: 10px;
 border: 2px solid #1f2937;
 }
-aside {
-  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease;
-  opacity: 1;
-}
-aside.hidden {
-  transform: translateX(-100%);
-  opacity: 0;
-}
 .dark .dark-section {
 background-color: #0A152E !important;
 border-color: #1e40af !important;
 color: #E0EEFF !important; 
+}
+@keyframes slideIn {
+from {
+transform: translateX(-100%);
+opacity: 0.8;
+}
+to {
+transform: translateX(0);
+opacity: 1;
+}
+}
+@keyframes slideOut {
+from {
+transform: translateX(0);
+opacity: 1;
+}
+to {
+transform: translateX(-100%);
+opacity: 0.7;
+}
+}
+.animate-slide-in {
+animation: slideIn 0.3s ease-out forwards;
+}
+.animate-slide-out {
+animation: slideOut 0.3s ease-in forwards;
 }

@@ -67,11 +67,6 @@ class="nav-dor font-semibold hover:bg-gray-100 dark:hover:bg-gray-800 px-3 py-3 
 </div>
 </nav>
 </aside>
-<div
-id="overlay"
-class="fixed inset-0 bg-black bg-opacity-30 z-30 hidden md:hidden"
-aria-hidden="true"
-></div>
 <div class="flex-1 flex flex-col overflow-hidden">
 <header class="p-2 flex flex-col space-y-2 bg-white dark-section">
 <div class="flex items-center justify-between px-2 md:justify-end">
@@ -82,9 +77,9 @@ class="h-[60px] object-contain select-none md:order-2 md:ml-auto"
 />
 <button
 aria-label="Toggle menu"
-id="menuButton"
+id="sidebarToggle"
 type="button"
-onclick="toggleSidebar()"
+onclick="sidebarToggle()"
 class="px-4 py-2 rounded shadow-md active:bg-gray-200 dark:active:bg-gray-700 transition-colors duration-100 text-gray-500 dark:text-gray-300 bg-white dark:bg-gray-900 md:hidden focus:outline-none"
 >
 <i class="fas fa-bars text-black dark:text-white text-xl animate-pulse"></i>

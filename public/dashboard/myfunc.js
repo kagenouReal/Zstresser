@@ -1,39 +1,4 @@
-let menuVisible = false;
-function toggleMenu() {
-const menu = document.getElementById('mobileMenu');
-const toggleBtn = document.getElementById('menuToggle');
-if (!menuVisible) {
-menu.style.display = 'block';
-menu.style.animation = 'slideIn 0.3s ease-in-out';
-menuVisible = true;
-setTimeout(() => {
-document.addEventListener('click', outsideClickListener);
-}, 350);
-} else {
-hideMenu();
-}
-}
-function hideMenu() {
-const menu = document.getElementById('mobileMenu');
-menu.style.animation = 'slideOut 0.3s ease-in-out';
-setTimeout(() => {
-menu.style.display = 'none';
-menuVisible = false;
-}, 300);
-document.removeEventListener('click', outsideClickListener);
-}
-function outsideClickListener(event) {
-const menu = document.getElementById('mobileMenu');
-const toggleBtn = document.getElementById('menuToggle');
 
-if (
-menuVisible &&
-!menu.contains(event.target) &&
-event.target !== toggleBtn
-) {
-hideMenu();
-}
-}
 //=========
 window.addEventListener("DOMContentLoaded", async () => {
 try {
@@ -74,10 +39,47 @@ console.error("Gagal ambil data ping:", e);
 tailwind.config = {
 darkMode: "class",
 };
-function toggleSidebar() {
+let isSidebarOpen = false;
+function sidebarToggle(e) {
 const sidebar = document.querySelector("aside");
-sidebar.classList.toggle("-translate-x-full");
-toggleOverlay();
+const overlay = document.getElementById("overlay");
+const toggleBtn = document.getElementById("sidebarToggle");
+if (e) e.stopPropagation();
+if (!isSidebarOpen) {
+sidebar.classList.remove("animate-slide-out");
+sidebar.classList.add("animate-slide-in");
+sidebar.classList.remove("-translate-x-full");
+overlay?.classList.remove("hidden");
+isSidebarOpen = true;
+setTimeout(() => {
+document.addEventListener("click", outsideClickListener);
+}, 10);
+} else {
+closeSidebar();
+}
+}
+function closeSidebar() {
+const sidebar = document.querySelector("aside");
+const overlay = document.getElementById("overlay");
+sidebar.classList.remove("animate-slide-in");
+sidebar.classList.add("animate-slide-out");
+overlay?.classList.add("hidden");
+setTimeout(() => {
+sidebar.classList.add("-translate-x-full");
+isSidebarOpen = false;
+document.removeEventListener("click", outsideClickListener);
+}, 300); 
+}
+function outsideClickListener(event) {
+const sidebar = document.querySelector("aside");
+const toggleBtn = document.getElementById("sidebarToggle");
+if (
+isSidebarOpen &&
+!sidebar.contains(event.target) &&
+!toggleBtn.contains(event.target)
+) {
+closeSidebar();
+}
 }
 function toggleDarkMode() {
 document.documentElement.classList.toggle("dark");

@@ -58,10 +58,47 @@ button.innerHTML = '<i class="fas fa-copy mr-1"></i> Copy';
 tailwind.config = {
 darkMode: "class",
 };
-function toggleSidebar() {
+let isSidebarOpen = false;
+function sidebarToggle(e) {
 const sidebar = document.querySelector("aside");
-sidebar.classList.toggle("-translate-x-full");
-toggleOverlay();
+const overlay = document.getElementById("overlay");
+const toggleBtn = document.getElementById("sidebarToggle");
+if (e) e.stopPropagation();
+if (!isSidebarOpen) {
+sidebar.classList.remove("animate-slide-out");
+sidebar.classList.add("animate-slide-in");
+sidebar.classList.remove("-translate-x-full");
+overlay?.classList.remove("hidden");
+isSidebarOpen = true;
+setTimeout(() => {
+document.addEventListener("click", outsideClickListener);
+}, 10);
+} else {
+closeSidebar();
+}
+}
+function closeSidebar() {
+const sidebar = document.querySelector("aside");
+const overlay = document.getElementById("overlay");
+sidebar.classList.remove("animate-slide-in");
+sidebar.classList.add("animate-slide-out");
+overlay?.classList.add("hidden");
+setTimeout(() => {
+sidebar.classList.add("-translate-x-full");
+isSidebarOpen = false;
+document.removeEventListener("click", outsideClickListener);
+}, 300); 
+}
+function outsideClickListener(event) {
+const sidebar = document.querySelector("aside");
+const toggleBtn = document.getElementById("sidebarToggle");
+if (
+isSidebarOpen &&
+!sidebar.contains(event.target) &&
+!toggleBtn.contains(event.target)
+) {
+closeSidebar();
+}
 }
 function toggleDarkMode() {
 document.documentElement.classList.toggle("dark");
