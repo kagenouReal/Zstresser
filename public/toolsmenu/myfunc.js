@@ -20,7 +20,10 @@ const uploadLabel = uploadBtn.querySelector('.label');
 uploadForm.addEventListener('submit', async (e) => {
 e.preventDefault();
 const file = uploadInput.files[0];
-if (!file) return alert('Pilih file dulu, Darling~');
+if (!file) {
+alert('Pilih file dulu, Darling~');
+return;
+}
 uploadSpinner.classList.remove('hidden');
 uploadLabel.textContent = 'Uploading...';
 uploadBtn.disabled = true;
@@ -35,32 +38,70 @@ uploadLabel.textContent = 'Upload';
 uploadBtn.disabled = false;
 return alert('Gagal upload file!');
 }
-const { directLink } = await res.json();
-uploadBtn.classList.add('hidden');
+const data = await res.json();
+const directLink = data.directLink;
 const item = document.createElement('li');
-item.className = 'bg-white p-4 rounded shadow border-l-4 border-green-500 flex items-center justify-between gap-4';
+item.className = 'bg-white dark:bg-gray-900 p-4 rounded shadow border-l-4 border-green-500 dark:border-green-500 flex items-center justify-between gap-4';
 const linkText = document.createElement('input');
 linkText.type = 'text';
 linkText.readOnly = true;
-linkText.className = 'text-sm w-full bg-gray-100 px-2 py-1 rounded';
+linkText.className = 'text-sm w-full bg-gray-100 dark:bg-gray-700 dark:text-gray-200 px-2 py-1 rounded';
 linkText.value = directLink;
 const copyBtn = document.createElement('button');
 copyBtn.textContent = 'Copy';
-copyBtn.className = 'bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600';
+copyBtn.className = 'bg-green-500 dark:bg-green-800 text-white px-3 py-1 rounded hover:bg-green-600 hover:bg-green-900';
 copyBtn.onclick = () => {
-navigator.clipboard.writeText(directLink);
+if (navigator.clipboard && navigator.clipboard.writeText) {
+navigator.clipboard.writeText(directLink).then(() => {
 copyBtn.textContent = 'Copied!';
 setTimeout(() => {
-uploadList.removeChild(item);
+while (uploadList.firstChild) {
+uploadList.removeChild(uploadList.firstChild);
+}
 uploadBtn.classList.remove('hidden');
 uploadLabel.textContent = 'Upload';
 uploadBtn.disabled = false;
-}, 1500);
+}, 2000);
+}).catch(() => {
+fallbackCopyTextToClipboard(directLink);
+});
+} else {
+fallbackCopyTextToClipboard(directLink);
+}
 };
+
+function fallbackCopyTextToClipboard(text) {
+const textArea = document.createElement("textarea");
+textArea.value = text;
+document.body.appendChild(textArea);
+textArea.focus();
+textArea.select();
+try {
+const successful = document.execCommand('copy');
+if (successful) {
+copyBtn.textContent = 'Copied!';
+setTimeout(() => {
+while (uploadList.firstChild) {
+uploadList.removeChild(uploadList.firstChild);
+}
+uploadBtn.classList.remove('hidden');
+uploadLabel.textContent = 'Upload';
+uploadBtn.disabled = false;
+}, 2000);
+} else {
+copyBtn.textContent = 'Copy';
+}
+} catch (err) {
+copyBtn.textContent = 'Copy';
+}
+document.body.removeChild(textArea);
+}
 item.appendChild(linkText);
 item.appendChild(copyBtn);
 uploadList.prepend(item);
 uploadForm.reset();
+uploadLabel.textContent = 'Upload';
+uploadBtn.disabled = false;
 } catch (err) {
 console.error(err);
 uploadSpinner.classList.add('hidden');
@@ -103,15 +144,15 @@ const blob = new Blob([encrypted], { type: 'application/javascript' });
 const url = URL.createObjectURL(blob);
 encryptBtn.classList.add('hidden');
 const item = document.createElement('li');
-item.className = 'bg-white p-4 rounded shadow border-l-4 border-blue-500 flex items-center justify-between gap-4';
+item.className = 'bg-white dark:bg-gray-900 p-4 rounded shadow border-l-4 border-green-500 dark:border-green-500 flex items-center justify-between gap-4';
 const linkText = document.createElement('input');
 linkText.type = 'text';
 linkText.readOnly = true;
-linkText.className = 'text-sm w-full bg-gray-100 px-2 py-1 rounded';
+linkText.className = 'text-sm w-full bg-gray-100 dark:bg-gray-700 dark:text-gray-200 px-2 py-1 rounded';
 linkText.value = url;
 const copyBtn = document.createElement('button');
 copyBtn.textContent = 'Download';
-copyBtn.className = 'bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600';
+copyBtn.className = 'bg-green-500 dark:bg-green-800 text-white px-3 py-1 rounded hover:bg-green-600 hover:bg-green-900';
 copyBtn.onclick = () => {
 const a = document.createElement('a');
 a.href = url;
@@ -137,43 +178,50 @@ encryptBtn.disabled = false;
 alert('Terjadi kesalahan saat mengenkripsi file!\nInfo: ' + err.message);
 }
 });
-let menuVisible = false;
-function toggleMenu() {
-const menu = document.getElementById('mobileMenu');
-const toggleBtn = document.getElementById('menuToggle');
-if (!menuVisible) {
-menu.style.display = 'block';
-menu.style.animation = 'slideIn 0.3s ease-in-out';
-menuVisible = true;
-setTimeout(() => {
-document.addEventListener('click', outsideClickListener);
-}, 350);
-} else {
-hideMenu();
-}
-}
-function hideMenu() {
-const menu = document.getElementById('mobileMenu');
-menu.style.animation = 'slideOut 0.3s ease-in-out';
-setTimeout(() => {
-menu.style.display = 'none';
-menuVisible = false;
-}, 300);
-document.removeEventListener('click', outsideClickListener);
-}
-function outsideClickListener(event) {
-const menu = document.getElementById('mobileMenu');
-const toggleBtn = document.getElementById('menuToggle');
-
-if (
-menuVisible &&
-!menu.contains(event.target) &&
-event.target !== toggleBtn
-) {
-hideMenu();
-}
-}
 //=========
+tailwind.config = {
+darkMode: "class",
+};
+function toggleSidebar() {
+const sidebar = document.querySelector("aside");
+sidebar.classList.toggle("-translate-x-full");
+toggleOverlay();
+}
+function toggleDarkMode() {
+document.documentElement.classList.toggle("dark");
+const theme = document.documentElement.classList.contains("dark") ? "dark" : "light";
+localStorage.setItem("theme", theme);
+const link = document.querySelector('.nav-dor'); 
+if (link) {
+if (theme === "dark") {
+link.className = 'nav-dor font-semibold hover:bg-gray-100 dark:hover:bg-gray-800 px-3 py-3 rounded transition px-3 py-3 rounded flex items-center gap-1 bg-gray-300 dark:bg-gray-800';
+} else {
+link.className = 'nav-dor font-semibold hover:bg-gray-100 dark:hover:bg-gray-800 px-3 py-3 rounded transition';
+}
+}
+}
+document.addEventListener("DOMContentLoaded", () => {
+if (
+localStorage.getItem("theme") === "dark" ||
+(!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)
+) {
+document.documentElement.classList.add("dark");
+const link = document.querySelector('.nav-dor'); 
+if (link) {
+link.className = 'nav-dor font-semibold hover:bg-gray-300 dark:hover:bg-gray-800 px-3 py-3 rounded flex items-center gap-1 bg-gray-300 dark:bg-gray-800';
+}
+}
+});
+function toggleOverlay() {
+const overlay = document.getElementById("overlay");
+overlay.classList.toggle("hidden");
+}
+document.addEventListener("DOMContentLoaded", () => {
+document.getElementById("overlay").addEventListener("click", () => {
+toggleSidebar();
+});
+});
+//===========
 document.getElementById("logout-button-1").addEventListener("click", async () => {
 try {
 const res = await fetch("/api/logout", {
@@ -212,7 +260,7 @@ const path = window.location.pathname.replace(/\/$/, '');
 document.querySelectorAll('.nav-btn').forEach(link => {
 const navPath = link.getAttribute('data-path')?.replace(/\/$/, '');
 if (navPath === path) {
-link.className = 'nav-btn font-semibold px-0 py-2 rounded flex items-center gap-1 bg-gray-200 text-black';
+link.className = 'nav-btn font-semibold hover:bg-gray-300 dark:hover:bg-gray-800 px-3 py-3 rounded flex items-center gap-1 bg-gray-300 dark:bg-gray-800';
 }
 });
 });

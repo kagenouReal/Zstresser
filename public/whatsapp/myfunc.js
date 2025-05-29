@@ -6,9 +6,52 @@ const main = document.getElementById('mainContent');
 splash.classList.add('fade-out');
 setTimeout(() => {
 splash.remove();
-main.classList.remove('hidden');
+main?.classList.remove('hidden');
 }, 400);
 }, 800); 
+});
+//===========
+tailwind.config = {
+darkMode: "class",
+};
+function toggleSidebar() {
+const sidebar = document.querySelector("aside");
+sidebar.classList.toggle("-translate-x-full");
+toggleOverlay();
+}
+function toggleDarkMode() {
+document.documentElement.classList.toggle("dark");
+const theme = document.documentElement.classList.contains("dark") ? "dark" : "light";
+localStorage.setItem("theme", theme);
+const link = document.querySelector('.nav-dor'); 
+if (link) {
+if (theme === "dark") {
+link.className = 'nav-dor font-semibold hover:bg-gray-100 dark:hover:bg-gray-800 px-3 py-3 rounded transition px-3 py-3 rounded flex items-center gap-1 bg-gray-300 dark:bg-gray-800';
+} else {
+link.className = 'nav-dor font-semibold hover:bg-gray-100 dark:hover:bg-gray-800 px-3 py-3 rounded transition';
+}
+}
+}
+document.addEventListener("DOMContentLoaded", () => {
+if (
+localStorage.getItem("theme") === "dark" ||
+(!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)
+) {
+document.documentElement.classList.add("dark");
+const link = document.querySelector('.nav-dor'); 
+if (link) {
+link.className = 'nav-dor font-semibold hover:bg-gray-300 dark:hover:bg-gray-800 px-3 py-3 rounded flex items-center gap-1 bg-gray-300 dark:bg-gray-800';
+}
+}
+});
+function toggleOverlay() {
+const overlay = document.getElementById("overlay");
+overlay.classList.toggle("hidden");
+}
+document.addEventListener("DOMContentLoaded", () => {
+document.getElementById("overlay").addEventListener("click", () => {
+toggleSidebar();
+});
 });
 //===========
 window.addEventListener("DOMContentLoaded", async () => {
@@ -57,43 +100,6 @@ btn.textContent = 'Send Crash';
 }, 2000); 
 }
 }
-//==========
-let menuVisible = false;
-function toggleMenu() {
-const menu = document.getElementById('mobileMenu');
-const toggleBtn = document.getElementById('menuToggle');
-if (!menuVisible) {
-menu.style.display = 'block';
-menu.style.animation = 'slideIn 0.3s ease-in-out';
-menuVisible = true;
-setTimeout(() => {
-document.addEventListener('click', outsideClickListener);
-}, 350);
-} else {
-hideMenu();
-}
-}
-function hideMenu() {
-const menu = document.getElementById('mobileMenu');
-menu.style.animation = 'slideOut 0.3s ease-in-out';
-setTimeout(() => {
-menu.style.display = 'none';
-menuVisible = false;
-}, 300);
-document.removeEventListener('click', outsideClickListener);
-}
-function outsideClickListener(event) {
-const menu = document.getElementById('mobileMenu');
-const toggleBtn = document.getElementById('menuToggle');
-
-if (
-menuVisible &&
-!menu.contains(event.target) &&
-event.target !== toggleBtn
-) {
-hideMenu();
-}
-}
 //=========
 document.getElementById("logout-button-1").addEventListener("click", async () => {
 try {
@@ -122,7 +128,7 @@ const userList = document.getElementById('userList');
 userList.innerHTML = '';
 data.forEach(user => {
 const li = document.createElement('li');
-li.className = 'flex items-center justify-between gap-3 bg-white p-3 rounded shadow';
+li.className = 'flex items-center justify-between gap-3 bg-white dark:bg-gray-900 p-3 rounded shadow';
 const userInfo = document.createElement('span');
 userInfo.innerHTML = `
 <strong>${user.pushName || user.name || user.id}</strong><br>
@@ -222,7 +228,7 @@ const path = window.location.pathname.replace(/\/$/, '');
 document.querySelectorAll('.nav-btn').forEach(link => {
 const navPath = link.getAttribute('data-path')?.replace(/\/$/, '');
 if (navPath === path) {
-link.className = 'nav-btn font-semibold px-0 py-2 rounded flex items-center gap-1 bg-gray-200 text-black';
+link.className = 'nav-btn font-semibold hover:bg-gray-300 dark:hover:bg-gray-800 px-3 py-3 rounded flex items-center gap-1 bg-gray-300 dark:bg-gray-800';
 }
 });
 });
