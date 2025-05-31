@@ -25,7 +25,7 @@ global.cmdtele = true;
 global.startalltoken = true;
 //======================
 global.mess = { 
-owner: 'Waduhh! ,Lu gk ada akses Bg🗣️',
-succes: 'Success Bang😾'
+owner: 'Yamete kudasai! 💢 Kamu tidak punya izin, senpai~ 🔒✨',
+succes: 'Yatta~! ✨ Berhasil desu nya~ 😼💖'
 }
 //======================

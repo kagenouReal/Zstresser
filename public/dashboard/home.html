@@ -11,7 +11,7 @@ rel="stylesheet"
 <link rel="stylesheet" href="/dashboard/style.css" />
 <script src="/dashboard/myfunc.js" defer></script>
 </head>
-<body class="bg-[#f0f5ff] dark:bg-gray-900 font-sans text-gray-900 dark:text-gray-100 transition-colors duration-300">
+<body class="bg-[#f0f5ff] dark:bg-[#1B1B1F] font-sans text-gray-900 dark:text-gray-100 transition-colors duration-300">
 <div class="flex h-screen overflow-hidden">
 <div id="splashScreen" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black text-white font-sans">
 <div class="text-base tracking-wide font-extrabold animate-pulse drop-shadow-lg mb-2">Z-CRASH</div>
@@ -19,12 +19,12 @@ rel="stylesheet"
 <div class="text-[10px] tracking-wider font-normal animate-pulse opacity-75 mt-2">Memuat Zstreszer Hub...</div>
 </div>
 <aside
-class="fixed inset-y-0 left-0 z-40 w-64 bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800 overflow-y-auto transform -translate-x-full md:translate-x-0 md:static md:flex md:flex-col transition-transform duration-200 ease-in-out"
+class="fixed inset-y-0 left-0 z-40 w-64 bg-white dark:bg-[#202026] border-r border-gray-200 dark:border-gray-800 overflow-y-auto transform -translate-x-full md:translate-x-0 md:static md:flex md:flex-col transition-transform duration-200 ease-in-out"
 aria-label="Sidebar Navigation"
 >
 <nav class="top-0 left-0 h-full w-[250px] shadow-xl z-50 flex-col overflow-y-auto dark:text-blue">
 <div class="flex flex-col items-center py-0 mt-6">
-<a href="#" class="text-2xl font-bold text-blue-700 dark:text-blue-400 select-none">
+<a href="#" class="text-2xl font-bold text-blue-700 dark:text-blue-500 select-none">
 ZSTRESZER
 </a>
 <span class="text-sm text-gray-400 dark:text-gray-500 select-none">Panel</span>
@@ -80,7 +80,7 @@ aria-label="Toggle menu"
 id="sidebarToggle"
 type="button"
 onclick="sidebarToggle()"
-class="px-4 py-2 rounded shadow-md active:bg-gray-200 dark:active:bg-gray-700 transition-colors duration-100 text-gray-500 dark:text-gray-300 bg-white dark:bg-gray-900 md:hidden focus:outline-none"
+class="px-4 py-2 rounded shadow-md active:bg-gray-200 dark:active:bg-gray-700 transition-colors duration-100 text-gray-500 dark:text-gray-300 bg-white dark:bg-[#1B1B25] md:hidden focus:outline-none"
 >
 <i class="fas fa-bars text-black dark:text-white text-xl animate-pulse"></i>
 </button>
@@ -108,22 +108,22 @@ Home of APIs, WhatsApp bugs, DDoS power, and elite chaos tools
 <!-- stats -->
 <section id="stat-section" class="bg-white dark-section rounded-xl p-7 shadow-lg mt-10 transition-transform hover:scale-[1.02] duration-300 space-y-6" style="box-shadow: 0 8px 24px var(--card-shadow);">
 <h2 class="text-xl font-semibold border-b border-gray-200 dark:border-gray-600 pb-4 text-[color:var(--primary-blue-dark)] dark:text-blue-800 flex items-center gap-3 select-none">
-  <i class="fas fa-chart-bar text-blue-500"></i> Statistic Request
+<i class="fas fa-chart-bar text-blue-400 dark:text-blue-600"></i> Statistic Request
 </h2>
-<ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-sm sm:text-base font-medium text-black dark:text-gray-600">
-<li class="flex items-center gap-3 bg-white/50 dark:bg-gray-900 backdrop-blur-md rounded-lg px-4 py-4 shadow">
+<ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-sm sm:text-base font-medium text-black dark:text-gray-400">
+<li class="flex items-center gap-3 bg-white/50 dark:bg-[#1B1B25] backdrop-blur-md rounded-lg px-4 py-4 shadow">
 <i class="fas fa-database text-indigo-500"></i>
 <span>Total Request: <span id="totalReq" class="font-bold text-indigo-600">0</span></span>
 </li>
-<li class="flex items-center gap-3 bg-white/50 dark:bg-gray-900 backdrop-blur-md rounded-lg px-4 py-4 shadow">
+<li class="flex items-center gap-3 bg-white/50 dark:bg-[#1B1B25] backdrop-blur-md rounded-lg px-4 py-4 shadow">
 <i class="fas fa-check-circle text-emerald-500"></i>
 <span>Request Berhasil: <span id="successReq" class="font-bold text-emerald-600">0</span></span>
 </li>
-<li class="flex items-center gap-3 bg-white/50 dark:bg-gray-900 backdrop-blur-md rounded-lg px-4 py-4 shadow">
+<li class="flex items-center gap-3 bg-white/50 dark:bg-[#1B1B25] backdrop-blur-md rounded-lg px-4 py-4 shadow">
 <i class="fas fa-times-circle text-red-500"></i>
 <span>Request Gagal: <span id="failReq" class="font-bold text-red-600">0</span></span>
 </li>
-<li class="flex items-center gap-3 bg-white/50 dark:bg-gray-900 backdrop-blur-md rounded-lg px-4 py-4 shadow">
+<li class="flex items-center gap-3 bg-white/50 dark:bg-[#1B1B25] backdrop-blur-md rounded-lg px-4 py-4 shadow">
 <i class="fas fa-history text-blue-500"></i>
 <span>Crash Terakhir: <span id="lastCrash" class="font-bold text-blue-600">Tidak ada</span></span>
 </li>
@@ -132,61 +132,61 @@ Home of APIs, WhatsApp bugs, DDoS power, and elite chaos tools
 <!-- ping -->
 <section id="pingSection" class="bg-white dark-section rounded-xl p-7 shadow-lg mt-10 transition-transform hover:scale-[1.02] duration-300 space-y-6" style="box-shadow: 0 8px 24px var(--card-shadow);">
 <h2 class="text-xl font-semibold border-b border-gray-200 dark:border-gray-600 pb-4 text-[color:var(--primary-blue-dark)] dark:text-blue-800 flex items-center gap-3 select-none">
-<i class="fas fa-server text-green-500"></i>Server Info
+<i class="fas fa-server text-green-400 dark:text-green-600"></i>Server Info
 </h2>
 <ul class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 text-sm sm:text-base font-medium text-black dark:text-gray-600">
-<li class="flex items-center gap-2 bg-white/50 dark:bg-gray-900 backdrop-blur-md rounded-lg px-3 py-3 shadow">
+<li class="flex items-center gap-2 bg-white/50 dark:bg-[#1B1B25] backdrop-blur-md rounded-lg px-3 py-3 shadow">
 <i class="fas fa-microchip text-cyan-500"></i> 
-<div class="flex flex-col">
+<div class="flex flex-col text-black dark:text-gray-400">
 <span>OS:</span>
 <span id="osPlatform">-</span>
 </div>
 </li>
-<li class="flex items-center gap-2 bg-white/50 dark:bg-gray-900 backdrop-blur-md rounded-lg px-3 py-3 shadow">
+<li class="flex items-center gap-2 bg-white/50 dark:bg-[#1B1B25] backdrop-blur-md rounded-lg px-3 py-3 shadow">
 <i class="fas fa-server text-blue-500"></i>
-<div class="flex flex-col">
+<div class="flex flex-col text-black dark:text-gray-400">
 <span>Hostname:</span>
 <span id="hostName">Localhost</span>
 </div>
 </li>
-<li class="flex items-center gap-2 bg-white/50 dark:bg-gray-900 backdrop-blur-md rounded-lg px-3 py-3 shadow">
+<li class="flex items-center gap-2 bg-white/50 dark:bg-[#1B1B25] backdrop-blur-md rounded-lg px-3 py-3 shadow">
 <i class="fas fa-memory text-indigo-500"></i> 
-<div class="flex flex-col">
+<div class="flex flex-col text-black dark:text-gray-400">
 <span>RAM Total:</span>
 <span id="ramTotal">-</span>
 </div>
 </li>
-<li class="flex items-center gap-2 bg-white/50 dark:bg-gray-900 backdrop-blur-md rounded-lg px-3 py-3 shadow">
+<li class="flex items-center gap-2 bg-white/50 dark:bg-[#1B1B25] backdrop-blur-md rounded-lg px-3 py-3 shadow">
 <i class="fas fa-bolt text-orange-500"></i> 
-<div class="flex flex-col">
+<div class="flex flex-col text-black dark:text-gray-400">
 <span>RAM Used:</span>
 <span id="ramUsed">-</span>
 </div>
 </li>
-<li class="flex items-center gap-2 bg-white/50 dark:bg-gray-900 backdrop-blur-md rounded-lg px-3 py-3 shadow">
+<li class="flex items-center gap-2 bg-white/50 dark:bg-[#1B1B25] backdrop-blur-md rounded-lg px-3 py-3 shadow">
 <i class="fas fa-battery-three-quarters text-emerald-500"></i> 
-<div class="flex flex-col">
+<div class="flex flex-col text-black dark:text-gray-400">
 <span>RAM Free:</span>
 <span id="ramFree">-</span>
 </div>
 </li>
-<li class="flex items-center gap-2 bg-white/50 dark:bg-gray-900 backdrop-blur-md rounded-lg px-3 py-3 shadow">
+<li class="flex items-center gap-2 bg-white/50 dark:bg-[#1B1B25] backdrop-blur-md rounded-lg px-3 py-3 shadow">
 <i class="fas fa-microchip text-purple-500"></i> 
-<div class="flex flex-col">
+<div class="flex flex-col text-black dark:text-gray-400">
 <span>CPU Model:</span>
 <span id="cpuModel">-</span>
 </div>
 </li>
-<li class="flex items-center gap-2 bg-white/50 dark:bg-gray-900 backdrop-blur-md rounded-lg px-3 py-3 shadow">
+<li class="flex items-center gap-2 bg-white/50 dark:bg-[#1B1B25] backdrop-blur-md rounded-lg px-3 py-3 shadow">
 <i class="fas fa-cogs text-pink-500"></i> 
-<div class="flex flex-col">
+<div class="flex flex-col text-black dark:text-gray-400">
 <span>CPU Cores:</span>
 <span id="cpuCores">-</span>
 </div>
 </li>
-<li class="flex items-center gap-2 bg-white/50 dark:bg-gray-900 backdrop-blur-md rounded-lg px-3 py-3 shadow">
+<li class="flex items-center gap-2 bg-white/50 dark:bg-[#1B1B25] backdrop-blur-md rounded-lg px-3 py-3 shadow">
 <i class="fas fa-clock text-teal-500"></i> 
-<div class="flex flex-col">
+<div class="flex flex-col text-black dark:text-gray-400">
 <span>VPS Uptime:</span>
 <span id="vpsUptime">-</span>
 </div>
@@ -196,47 +196,78 @@ Home of APIs, WhatsApp bugs, DDoS power, and elite chaos tools
 <!-- dev info -->
 <section class="bg-white dark-section rounded-xl p-8 shadow-lg transition-transform hover:scale-[1.02] duration-300 font-semibold mt-8 " style="box-shadow: 0 8px 24px var(--card-shadow);">
 <h2 class="text-xl font-semibold border-b border-gray-200 dark:border-gray-600 pb-4 text-[color:var(--primary-blue-dark)] dark:text-blue-800 flex items-center gap-3 select-none">
-<i class="fas fa-microchip text-purple-400 text-lg"></i>
+<i class="fas fa-microchip text-purple-400 dark:text-purple-600 text-lg"></i>
 <span class="tracking-wide">Developer Info</span>
 </h2>
-<div class="space-y-4 text-[color:var(--text-light)] text-base leading-relaxed">
-<p><strong class="text-[color:var(--primary-blue)]">Kagenou</strong> adalah developer Newbie asal <span class="italic text-slate-400">Kelantan, Malaysia</span>, yang menekuni dunia pemrograman sejak usia 14 tahun sebagai bentuk ekspresi diri dan eksplorasi teknologi.</p>
-<p>Berfokus sebagai <strong class="text-emerald-400">Bot Master</strong>, Kagenou menikmati proses membangun sistem otomatisasi, scripting backend ringan, dan antarmuka sederhana namun fungsional.</p>
-<p>Bahasa yang digunakan sehari-hari antara lain <span class="text-yellow-300">JavaScript</span>, <span class="text-blue-400">HTML/CSS</span>, <span class="text-green-300">Node.js</span>, serta sedikit <span class="text-indigo-300">Python</span>.</p>
-<p>Baginya, ngoding bukan perlombaan. Ini adalah tempat belajar, bereksperimen, dan menciptakan. Dari error demi error, Kagenou terus bertumbuh.</p>
-<blockquote class="border-l-4 border-yellow-400 pl-4 italic text-sm text-yellow-300">“Jangan takut error, belajarlah dari kesalahan.”</blockquote>
+<div class="space-y-4 text-[color:var(--text-light)] dark:text-gray-400 text-base leading-relaxed">
+<p>
+<strong class="text-[color:var(--primary-blue)] dark:text-blue-700">Kagenou</strong>
+adalah developer Newbie asal
+<span class="italic text-black dark:text-gray-400">Kelantan, Malaysia</span>,
+yang menekuni dunia pemrograman sejak usia 14 tahun sebagai bentuk ekspresi diri dan eksplorasi teknologi.
+</p>
+<p>
+Berfokus sebagai
+<strong class="text-emerald-400 dark:text-emerald-700">Bot Master</strong>,
+Kagenou menikmati proses membangun sistem otomatisasi, scripting backend ringan, dan antarmuka sederhana namun fungsional.
+</p>
+<p>
+Bahasa yang digunakan sehari-hari antara lain
+<span class="text-yellow-400 dark:text-yellow-700">JavaScript</span>,
+<span class="text-blue-400 dark:text-blue-700">HTML/CSS</span>,
+<span class="text-green-400 dark:text-green-700">Node.js</span>,
+serta sedikit
+<span class="text-indigo-400 dark:text-indigo-700">Python</span>.
+</p>
+<p>
+Baginya, ngoding bukan perlombaan. Ini adalah tempat belajar, bereksperimen, dan menciptakan.
+Dari error demi error, Kagenou terus bertumbuh.
+</p>
+<blockquote class="border-l-4 border-red-400 dark:border-red-700 pl-4 italic text-sm text-red-400 dark:text-red-700">
+“Jangan takut error, belajarlah dari kesalahan.”
+</blockquote>
 </div>
 </section>
 <!-- Cradit -->
 <section class="bg-white dark-section rounded-xl p-6 shadow-lg transition-transform hover:scale-[1.03] duration-300"
  style="box-shadow: 0 6px 18px var(--card-shadow);">
 <h2 class="text-xl font-semibold border-b border-gray-200 dark:border-gray-600 pb-4 text-[color:var(--primary-blue-dark)] dark:text-blue-800 flex items-center gap-3 select-none">
-<i class="fas fa-bolt text-yellow-400 animate-pulse"></i>
+<i class="fas fa-bolt text-yellow-400 dark:text-yellow-500 animate-pulse"></i>
 <span>Credits</span>
 </h2>
-<ul class="space-y-4 text-base font-medium text-[color:var(--text-light)]">
+<ul class="space-y-4 text-base font-medium text-gray-800 dark:text-gray-400 mt-4">
 <li class="flex items-center gap-2">
-<i class="fas fa-user text-[color:var(--button-blue)] w-5"></i>
-<span><strong>Creator:</strong> <span class="text-[color:var(--primary-blue)]">Kagenou</span></span>
+<i class="fas fa-user text-blue-600 dark:text-blue-400 w-5"></i>
+<span>
+<strong class="text-gray-900 dark:text-gray-400">Creator:</strong>
+<span class="text-blue-600 dark:text-blue-500">Kagenou</span>
+</span>
 </li>
 <li class="flex items-center gap-2">
-<i class="fas fa-globe text-[color:var(--button-blue)] w-5"></i>
-<span><strong>Website:</strong> <span class="text-[color:var(--primary-blue)]">Zstreszer</span></span>
+<i class="fas fa-globe text-blue-600 dark:text-blue-400 w-5"></i>
+<span>
+<strong class="text-gray-900 dark:text-gray-400">Website:</strong>
+<span class="text-blue-600 dark:text-blue-500">Zstreszer</span>
+</span>
 </li>
 <li class="flex items-center gap-2">
-<i class="fab fa-github text-gray-800 w-5"></i>
+<i class="fab fa-github text-gray-800 dark:text-gray-400 w-5"></i>
 <a href="https://github.com/kagenouReal" target="_blank" rel="noopener noreferrer"
- class="hover:text-[color:var(--button-blue)] underline underline-offset-2 transition-all">GitHub Owner</a>
+class="text-gray-800 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-300 underline underline-offset-2 transition-all">
+GitHub Owner
+</a>
 </li>
 <li class="flex items-center gap-2">
-<i class="fab fa-whatsapp text-green-500 w-5"></i>
+<i class="fab fa-whatsapp text-green-600 dark:text-green-400 w-5"></i>
 <a href="https://wa.me/601112260297" target="_blank" rel="noopener noreferrer"
- class="hover:text-[color:var(--button-blue)] underline underline-offset-2 transition-all">WhatsApp Owner</a>
+class="text-gray-800 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-300 underline underline-offset-2 transition-all">
+WhatsApp Owner
+</a>
 </li>
 </ul>
 </section>
-<footer class="relative bg-white dark-section border-t border-gray-300 shadow dark:border-gray-600 p-2 text-center text-gray-600 dark:text-gray-300 font-semibold select-none">
-  © KAGENOU - 2025 || ZSTRESZER
+<footer class="w-full relative bg-white dark-section border-t border-gray-300 dark:border-gray-600 shadow p-3 text-center text-sm text-gray-600 dark:text-gray-400 font-semibold select-none">
+© <span class="font-bold text-black dark:text-gray-400">KAGENOU</span> - 2025 || <span class="text-indigo-600 dark:text-indigo-400">ZSTRESZER</span>
 </footer>
 </main>
 <!-- Footer -->
