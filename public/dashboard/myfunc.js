@@ -88,9 +88,9 @@ localStorage.setItem("theme", theme);
 const link = document.querySelector('.nav-dor'); 
 if (link) {
 if (theme === "dark") {
-link.className = 'nav-dor font-semibold hover:bg-gray-100 dark:hover:bg-gray-800 px-3 py-3 rounded transition px-3 py-3 rounded flex items-center gap-1 bg-gray-300 dark:bg-gray-800';
+link.className = 'nav-dor font-semibold hover:bg-gray-100 dark:hover:bg-[#2C2C37] px-3 py-3 rounded transition px-3 py-3 rounded flex items-center gap-1 bg-gray-300 dark:bg-[#2C2C37]';
 } else {
-link.className = 'nav-dor font-semibold hover:bg-gray-100 dark:hover:bg-gray-800 px-3 py-3 rounded transition';
+link.className = 'nav-dor font-semibold hover:bg-gray-100 dark:hover:bg-[#2C2C37] px-3 py-3 rounded transition';
 }
 }
 }
@@ -99,7 +99,7 @@ if (localStorage.getItem("theme") === "dark") {
 document.documentElement.classList.add("dark");
 const link = document.querySelector('.nav-dor'); 
 if (link) {
-link.className = 'nav-dor font-semibold hover:bg-gray-300 dark:hover:bg-gray-800 px-3 py-3 rounded flex items-center gap-1 bg-gray-300 dark:bg-gray-800';
+link.className = 'nav-dor font-semibold hover:bg-gray-300 dark:hover:bg-[#2C2C37] px-3 py-3 rounded flex items-center gap-1 bg-gray-300 dark:bg-[#2C2C37]';
 }
 }
 });
@@ -148,7 +148,7 @@ const path = window.location.pathname.replace(/\/$/, '');
 document.querySelectorAll('.nav-btn').forEach(link => {
 const navPath = link.getAttribute('data-path')?.replace(/\/$/, '');
 if (navPath === path) {
-link.className = 'nav-btn font-semibold hover:bg-gray-300 dark:hover:bg-gray-800 px-3 py-3 rounded flex items-center gap-1 bg-gray-300 dark:bg-gray-800';
+link.className = 'nav-btn font-semibold hover:bg-gray-300 dark:hover:bg-[#2C2C37] px-3 py-3 rounded flex items-center gap-1 bg-gray-300 dark:bg-[#2C2C37]';
 }
 });
 });
