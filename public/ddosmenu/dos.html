@@ -1,0 +1,171 @@
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="utf-8" />
+<meta content="width=device-width, initial-scale=1" name="viewport" />
+<title>Zstreszer - V3</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+rel="stylesheet"
+/>
+<link rel="stylesheet" href="/ddosmenu/style.css" />
+<script src="/ddosmenu/myfunc.js" defer></script>
+</head>
+<body class="bg-[#f0f5ff] dark:bg-[#1B1B1F] font-sans text-gray-900 dark:text-gray-100 transition-colors duration-300">
+<div class="flex h-screen overflow-hidden">
+<div id="splashScreen" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black text-white font-sans">
+<div class="text-base tracking-wide font-extrabold animate-pulse drop-shadow-lg mb-2">Z-CRASH</div>
+<div class="loader w-10 h-10"></div>
+<div class="text-[10px] tracking-wider font-normal animate-pulse opacity-75 mt-2">Memuat Zstreszer Hub...</div>
+</div>
+<aside
+class="fixed inset-y-0 left-0 z-40 w-64 bg-white dark:bg-[#202026] border-r border-gray-200 dark:border-gray-800 overflow-y-auto transform -translate-x-full md:translate-x-0 md:static md:flex md:flex-col transition-transform duration-200 ease-in-out"
+aria-label="Sidebar Navigation"
+>
+<nav class="top-0 left-0 h-full w-[250px] shadow-xl z-50 flex-col overflow-y-auto dark:text-blue">
+<div class="flex flex-col items-center py-0 mt-6">
+<a href="#" class="text-2xl font-bold text-blue-700 dark:text-blue-500 select-none">
+ZSTRESZER
+</a>
+<span class="text-sm text-gray-400 dark:text-gray-500 select-none">Panel</span>
+</div>
+<div class="md-10 flex flex-col px-1 py-6 space-y-2 text-sm text-gray-700 dark:text-gray-300">
+<div class="text-xs text-gray-400 font-semibold tracking-widest pt-2 border-t border-gray-200 dark:border-gray-700">GENERAL</div>
+<a href="/dashboard" class="nav-btn font-semibold hover:bg-gray-100 dark:hover:bg-gray-800 px-3 py-3 rounded transition" data-path="/dashboard">
+<i class="fas fa-home w-4 ml-1"></i> Dashboard
+</a>
+<a onclick="toggleDarkMode()"
+class="nav-dor font-semibold hover:bg-gray-100 dark:hover:bg-gray-800 px-3 py-3 rounded transition">
+<i class="fas fa-moon ml-1"></i> Dark Mode
+</a>
+<div class="text-xs text-gray-400 font-semibold tracking-widest pt-2 border-t border-gray-200 dark:border-gray-700">EXTRAS</div>
+<a href="/docsmenu" class="nav-btn font-semibold hover:bg-gray-100 dark:hover:bg-gray-800 px-3 py-3 rounded transition" data-path="/docsmenu">
+<i class="fas fa-book w-4 ml-1"></i> Docs Menu
+</a>
+<a href="/toolsmenu" class="nav-btn font-semibold hover:bg-gray-100 dark:hover:bg-gray-800 px-3 py-3 rounded transition" data-path="/toolsmenu">
+<i class="fas fa-tools w-4 ml-1"></i> Tools Menu
+</a>
+<div class="text-xs text-gray-400 font-semibold tracking-widest pt-2 border-t border-gray-200 dark:border-gray-700">ATTACK</div>
+<a href="/ddosmenu" class="nav-btn font-semibold hover:bg-gray-100 dark:hover:bg-gray-800 px-3 py-3 rounded transition" data-path="/ddosmenu">
+<i class="fas fa-bolt w-4 ml-1"></i> Ddos Menu
+</a>
+<div class="text-xs text-gray-400 font-semibold tracking-widest pt-2 border-t border-gray-200 dark:border-gray-700">CLIENT</div>
+<a href="/telegram" class="nav-btn font-semibold hover:bg-gray-100 dark:hover:bg-gray-800 px-3 py-3 rounded transition" data-path="/telegram">
+<i class="fas fa-paper-plane w-4 ml-1"></i> Telegram
+</a>
+<a href="/whatsapp" class="nav-btn font-semibold hover:bg-gray-100 dark:hover:bg-gray-800 px-3 py-3 rounded transition" data-path="/whatsapp">
+<i class="fab fa-whatsapp w-4 ml-1"></i> Whatsapp
+</a>
+<div id="adminControlWrapper" class="text-xs text-gray-400 font-semibold tracking-widest pt-2 border-t border-gray-200 dark:border-gray-700">ADMIN</div>
+<a href="/cadmin" id="cekownwa" class="nav-btn flex items-center gap-2 font-semibold hover:bg-gray-100 dark:hover:bg-gray-800 px-3 py-3 rounded transition" data-path="/cadmin">
+<i class="fas fa-user-shield w-4 ml-1"></i> Admin Control
+</a>
+<div class="text-xs text-gray-400 font-semibold tracking-widest pt-3 border-t border-gray-200 dark:border-gray-700">SESSION</div>
+<a href="#" id="logout-button-1" class="nav-btn flex items-center gap-2 font-semibold hover:bg-gray-100 dark:hover:bg-gray-800 px-3 py-3 rounded transition">
+<i class="fas fa-sign-out-alt w-4 ml-1"></i> Logout
+</a>
+</div>
+</nav>
+</aside>
+
+<div class="flex-1 flex flex-col overflow-hidden">
+<header class="p-2 flex flex-col space-y-2 bg-white dark-section">
+<div class="flex items-center justify-between px-2 md:justify-end">
+<img 
+src="/assets/logo.png" 
+alt="ZSTRESZER Logo"
+class="h-[60px] object-contain select-none md:order-2 md:ml-auto"
+/>
+<button
+aria-label="Toggle menu"
+id="sidebarToggle"
+type="button"
+onclick="sidebarToggle()"
+class="px-4 py-2 rounded shadow-md active:bg-gray-200 dark:active:bg-gray-700 transition-colors duration-100 text-gray-500 dark:text-gray-300 bg-white dark:bg-[#24242C] md:hidden focus:outline-none"
+>
+<i class="fas fa-bars text-black dark:text-white text-xl animate-pulse"></i>
+</button>
+</div>
+</header>
+<!-- Main content -->
+<main class="overflow-y-auto p-6 max-w-6xl mx-auto space-y-10">
+<!-- main -->
+<section class="bg-white dark-section rounded-xl p-8 shadow-lg flex flex-col md:flex-row items-center gap-8 transition-transform hover:scale-[1.02] duration-300" style="box-shadow: 0 8px 24px var(--card-shadow);">
+<div class="rounded overflow-hidden shadow-md aspect-video w-72 ring-2 ring-gray-300 dark:ring-gray-600">
+<video
+class="w-full h-full object-cover"
+autoplay loop muted playsinline>
+<source src="/assets/miyu.mp4" type="video/mp4" />
+Your browser does not support the video tag.
+</video>
+</div>
+<div class="text-lg max-w-xl text-[color:var(--text-dark)] font-semibold -mt-4">
+<div class="w-full h-px bg-gray-200 dark:bg-gray-600"></div>
+<p class="leading-relaxed text-[color:var(--text-light)] dark:text-gray-300">
+Welcome to the <span class="text-[color:var(--primary-blue)] font-bold">DDoS Menu</span> —
+where power ignites, chaos spreads, and boundaries fall
+</p>
+</div>
+</section>
+<!-- strike -->
+<section class="bg-white dark-section rounded-xl p-6 shadow-xl mt-8 text-sm transition-transform hover:scale-[1.02] duration-300">
+<div class="flex items-center justify-between mb-5">
+<h2 class="text-xl w-full font-semibold border-b border-gray-200 dark:border-gray-600 pb-4 text-gray-800 dark:text-gray-300 flex items-center gap-3 select-none">
+<i class="fas fa-terminal text-red-400 dark:text-red-600"></i> Strike Console
+</h2>
+</div>
+<pre id="attackLog" class="mb-6 bg-white/50 dark:bg-[#24242C] border border-gray-300 dark:border-gray-600 text-green-600 dark:text-green-400 
+  w-full min-h-[120px] max-h-[120px] overflow-auto resize-none shadow rounded-lg p-3 
+  text-xs font-mono leading-snug whitespace-pre-wrap break-words break-all"
+>
+> Welcome To Zstreszer || Ddosmenu
+</pre>
+<form id="webAttackForm" class="space-y-5">
+<div class="grid grid-cols-3 gap-3">
+<div>
+<label class="text-[color:var(--text-dark)] dark:text-gray-400" font-semibold text-sm mb-2 block">Method</label>
+<select id="attackMethod" name="mode" class="w-full p-3 rounded border border-gray-300 dark:border-gray-600 text-sm bg-white/50 dark:bg-[#24242C] focus:ring-2 focus:ring-gray-300 dark:focus:ring-gray-800 focus:outline-none text-gray-400 dark:text-gray-500" required>
+<option disabled selected value="">-</option>
+<option value="hentai">🔥 HENTAI</option>
+<option value="hold">⚡ HOLD</option>
+<option value="flood">🌊 FLOOD</option>
+<option value="bypass">🛡 BYPASS</option>
+<option value="quantum">🌀 QUANTUM</option>
+<option value="mixmax">🔀 MIXMAX</option>
+<option value="thunder">⚔️ THUNDER</option>
+</select>
+</div>
+<div>
+<label class="text-[color:var(--text-dark)] dark:text-gray-400" font-semibold text-sm mb-2 block">Time</label>
+<input type="number" name="time" placeholder="60" min="1" required class="w-full p-3 rounded bg-white/50 dark:bg-[#24242C] border border-gray-300 dark:border-gray-600 text-sm focus:ring-2 focus:ring-gray-300 dark:focus:ring-gray-800 focus:outline-none text-gray-400 dark:text-gray-500" />
+</div>
+<div>
+<label class="text-[color:var(--text-dark)] dark:text-gray-400" font-semibold text-sm mb-2 block">Rate</label>
+<input id="attackRequests" type="number" name="rate" placeholder="1000" min="1" required class="w-full p-3 bg-white/50 dark:bg-[#24242C] rounded border border-gray-300 dark:border-gray-600 text-sm focus:ring-2 focus:ring-gray-300 dark:focus:ring-gray-800 focus:outline-none text-gray-400 dark:text-gray-500" />
+</div>
+</div>
+<div class="grid grid-cols-3 gap-3">
+<div class="col-span-2">
+<label class="text-[color:var(--text-dark)] dark:text-gray-400" font-semibold text-sm mb-2 block">Target</label>
+<input type="url" name="target" placeholder="https://..." required class="w-full p-3 bg-white/50 dark:bg-[#24242C] rounded border border-gray-300 dark:border-gray-600 text-sm focus:ring-2 focus:ring-gray-300 dark:focus:ring-gray-800 focus:outline-none text-gray-400 dark:text-gray-500" />
+</div>
+<div>
+<label class="text-[color:var(--text-dark)] dark:text-gray-400" font-semibold text-sm mb-2 block">Threads</label>
+<input id="attackThreads" type="number" name="thread" placeholder="10" min="1" required class="w-full p-3 rounded bg-white/50 dark:bg-[#24242C] border border-gray-300 dark:border-gray-600 text-sm focus:ring-2 focus:ring-gray-300 dark:focus:ring-gray-800 focus:outline-none text-gray-400 dark:text-gray-500" />
+</div>
+</div>
+<button id="attackBtn" type="submit" class="w-full bg-[color:var(--button-blue)] text-white px-5 py-2.5 rounded-lg transition duration-200 transform hover:scale-[1.02] active:scale-[0.98] shadow text-sm flex items-center justify-center gap-2 dark:bg-blue-900"
+>
+<i class="fas fa-bolt"></i> <span>EXECUTE</span>
+</button>
+</form>
+<pre id="attackLog2" class="hidden mt-5 bg-black text-green-400 p-4 rounded-lg text-xs h-48 overflow-y-auto font-mono"></pre>
+</section>
+<footer class="w-full relative bg-white dark-section border-t border-gray-300 dark:border-gray-600 shadow p-3 text-center text-sm text-gray-600 dark:text-gray-400 font-semibold select-none">
+© <span class="font-bold text-black dark:text-gray-400">KAGENOU</span> - 2025 || <span class="text-indigo-600 dark:text-indigo-400">ZSTRESZER</span>
+</footer>
+</main>
+<!-- Footer -->
+<script src="/assets/snow.js" type="text/javascript"> </script>
+</body>
+</html>

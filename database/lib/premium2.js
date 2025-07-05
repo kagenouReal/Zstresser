@@ -1,0 +1,7 @@
+// kagenou
+const fs=require("fs-extra");const path="./database/Accestele.json";let db={users:{}};try{if(!fs.existsSync("./database"))fs.mkdirSync("./database");if(!fs.existsSync(path))fs.writeFileSync(path,JSON.stringify(db,null,2));db=JSON.parse(fs.readFileSync(path,"utf8"));if(!db.users||typeof db.users!=="object")throw new Error("Format users salah!");}catch(e){console.warn("⚠️ Gagal load Accestele.json:",e);db={users:{}};}
+const saveDB=()=>{try{fs.writeFileSync(path,JSON.stringify(db,null,2));return true;}catch(e){console.error("❌ Gagal simpan Accestele.json:",e);return false;}};
+const getPremiumList=botId=>{const cleanId=botId.replace(/\D/g,"");return db.users[cleanId]||[];};
+const addPremiumUser=(botId,userId)=>{const cleanBotId=botId.replace(/\D/g,"");const cleanUserId=String(userId).replace(/\D/g,"");if(!db.users[cleanBotId])db.users[cleanBotId]=[];if(db.users[cleanBotId].includes(cleanUserId))return false;db.users[cleanBotId].push(cleanUserId);return saveDB();};
+const delPremiumUser=(botId,userId)=>{const cleanBotId=botId.replace(/\D/g,"");const cleanUserId=String(userId).replace(/\D/g,"");const list=db.users[cleanBotId];if(!list)return false;const index=list.indexOf(cleanUserId);if(index===-1)return false;list.splice(index,1);return saveDB();};
+module.exports={getPremiumList,addPremiumUser,delPremiumUser};

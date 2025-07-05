@@ -1,0 +1,32 @@
+{
+"name": "Zstreszer",
+"version": "3.0",
+"description": "This Is Zstreszer Version 3",
+"main": "index.js",
+"scripts": {
+"start": "node index.js",
+"dev": "node index.js"
+},
+"keywords": [
+"multi device"
+],
+"author": "Kagenou",
+"license": "MIT",
+"dependencies": {
+"@hapi/boom": "latest",
+"@kagenoureal/baileys": "latest",
+"express": "latest",
+"express-rate-limit": "latest",
+"express-session": "latest",
+"fs-extra": "latest",
+"gradient-string": "^3.0.0",
+"js-confuser": "latest",
+"os": "latest",
+"path": "latest",
+"webcrack": "latest",
+"pino": "latest",
+"telegraf": "latest",
+"user-agent": "^1.0.4",
+"user-agents": "^1.1.549"
+}
+}
